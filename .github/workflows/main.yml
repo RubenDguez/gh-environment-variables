@@ -17,17 +17,7 @@ jobs:
         runner: ['stage', 'uat', 'qa']
 
     steps:
-      - name: Setup Node
-        id: setup-noe
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-
-      - name: Checkout Code
-        id: checkout-code
-        uses: actions/checkout@v4
-
-      - name: Set Mapped Password
+      - name: 🚀 Set Password
         env:
           SANDBOX: ${{ matrix.runner }}
         uses: actions/github-script@v6
@@ -39,7 +29,7 @@ jobs:
             const sandbox = process.env.SANDBOX
             return envJson[sandbox]
       
-      - name: Print the password
+      - name: 🖨️ Print Password
         run: echo "${{steps.set-password.outputs.result}}"
 
           
