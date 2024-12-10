@@ -14,12 +14,12 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        runner: ['stage', 'uat', 'qa']
+        sandbox: ['neersit', 'neerqa', 'neeruat']
 
     steps:
       - name: 🚀 Set Password
         env:
-          SANDBOX: ${{ matrix.runner }}
+          SANDBOX: ${{ matrix.sandbox }}
         uses: actions/github-script@v6
         id: set-password
         with:
