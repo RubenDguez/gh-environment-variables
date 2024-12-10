@@ -1,0 +1,21 @@
+name: READ VARIABLES
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  matrix:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        runner: ['development', 'stage']
+
+    steps:
+      - name: Print Required information
+        id: print-information
+        run: |
+          echo ${{ matrix.runner }}
+          cat $HOME/secrets/my_secret.json
