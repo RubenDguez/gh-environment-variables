@@ -18,5 +18,4 @@ jobs:
         id: print-information
         run: |
           echo ${{ matrix.runner }}
-          echo ${{ secrets.runner.GH_USERNAME }}
-          cat $HOME/secrets/my_secret.json
+          echo "secret: ${{ secrets.runner.GH_USERNAME }}"
