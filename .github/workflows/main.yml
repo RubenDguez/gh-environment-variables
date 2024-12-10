@@ -5,6 +5,9 @@ on:
     branches:
       - main
 
+env:
+  SANDBOX_SECRETS: ${{ secrets.SANDBOX_SECRETS }}
+  
 jobs:
   matrix:
     runs-on: ubuntu-latest
