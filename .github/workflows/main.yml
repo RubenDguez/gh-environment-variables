@@ -27,9 +27,15 @@ jobs:
         id: checkout-code
         uses: actions/checkout@v4
 
-      - name: Print Required information
+      - name: Set Mapped Password
         env:
           SANDBOX: ${{ matrix.runner }}
-        id: print-information
-        run: node .github/utils/index.js
+        uses: actions/github-script@v6
+        with:
+          script: |
+            core.exportVariable('PASSWORD', $(node .github/utils/index.js));
+      
+      - name: Print the password
+        run: echo $PASSWORD
+
           
