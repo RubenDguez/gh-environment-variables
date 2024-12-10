@@ -14,8 +14,17 @@ jobs:
         runner: ['development', 'stage']
 
     steps:
+      - name: Setup Node
+        id: setup-noe
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Checkout Code
+        id: checkout-code
+        uses: actions/checkout@v4
+
       - name: Print Required information
         id: print-information
-        run: |
-          echo ${{ matrix.runner }}
-          echo "secret: ${{ secrets.runner.GH_USERNAME }}"
+        run: node .github/utils/index.js
+          
