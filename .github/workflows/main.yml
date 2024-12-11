@@ -9,18 +9,33 @@ env:
   SANDBOX_SECRETS: ${{ secrets.SANDBOX_SECRETS }}
 
 jobs:
+  setup-matrix:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup sandboxes
+        id: setup-sandboxes
+        uses: actions/github-script@v7
+        with:
+          result-encoding: string
+          script: |
+            const envJson = JSON.parse(process.env.SANDBOX_SECRETS);
+            const sandboxes = Object.keys(envJson);
+            console.log(sandboxes);
+            return sandboxes;
+
   matrix:
+    needs: setup-matrix
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
-        sandbox: ['neersit', 'neerqa', 'neeruat']
+        sandbox: ${{ needs.setup-matrix.setup-sandboxes.outputs.result }}
 
     steps:
       - name: 🚀 Set Password
         env:
           SANDBOX: ${{ matrix.sandbox }}
-        uses: actions/github-script@v6
+        uses: actions/github-script@v7
         id: set-password
         with:
           result-encoding: string
