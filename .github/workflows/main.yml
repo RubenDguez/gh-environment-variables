@@ -11,9 +11,11 @@ env:
 jobs:
   setup-matrix:
     runs-on: ubuntu-latest
+    outputs:
+      pr-number: ${{ steps.setup-sandboxes.outputs.SANDBOXES }}
     steps:
-      - name: Setup sandboxes
-        id: setup-sandboxes
+      - name: 🛸 Extract sandboxes
+        id: extract-sandboxes
         uses: actions/github-script@v7
         with:
           result-encoding: string
@@ -23,13 +25,18 @@ jobs:
             console.log(sandboxes);
             return sandboxes;
 
+      - name: ⚙️ setup sandboxes
+        id: setup-sandboxes
+        run: |
+          echo "SANDBOXES=${{ steps.extract-sandboxes.outputs.result }}" >> $GITHUB_OUTPUT
+
   matrix:
     needs: setup-matrix
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
-        sandbox: ${{ fromJson(needs.setup-matrix.setup-sandboxes.outputs.result) }}
+        sandbox: ${{ fromJson( needs.setup-sandboxes.outputs.SANDBOXES ) }}
 
     steps:
       - name: 🚀 Set Password
