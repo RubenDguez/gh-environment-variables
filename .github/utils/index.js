@@ -7,3 +7,4 @@ const pass = {
 }
 
 fs.writeFileSync('pass.txt', JSON.stringify(pass, null, 2), { encoding: 'utf-8' });
+JSON.stringify
