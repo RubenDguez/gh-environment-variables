@@ -83,6 +83,7 @@ jobs:
         with:
           result-encoding: string
           script: |
+            // JAVASCRIPT CODE
             const envJson = JSON.parse(process.env.SANDBOX_SECRETS);
             const { SANDBOX } = process.env
             return envJson[SANDBOX]
