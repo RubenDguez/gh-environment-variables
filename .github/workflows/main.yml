@@ -18,15 +18,16 @@ jobs:
         id: extract-sandboxes
         uses: actions/github-script@v7
         with:
-          result-encoding: string
           script: |
-            const envJson = JSON.parse(process.env.SANDBOX_SECRETS);
-            return JSON.stringify(Object.keys(envJson));
+            // JAVASCRIPT CODE
+            const { SANDBOX_SECRETS } = process.env
+            const envJson = JSON.parse(SANDBOX_SECRETS);
+            return Object.keys(envJson)
 
       - name: ⚙️ setup sandboxes
         id: setup-sandboxes
         run: |
-          echo "SANDBOXES=$(jq -cr '@json' <<< ${{ steps.extract-sandboxes.outputs.result }})" >> $GITHUB_OUTPUT
+          echo "SANDBOXES=${{ steps.extract-sandboxes.outputs.result }}" >> $GITHUB_OUTPUT
 
   matrix:
     needs: setup-matrix
@@ -34,7 +35,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        sandbox: ${{ needs.setup-matrix.outputs.SANDBOXES }}
+        sandbox: ${{ fromJson(needs.setup-matrix.outputs.SANDBOXES) }}
 
     steps:
       - name: 🚀 Set Password
