@@ -21,9 +21,7 @@ jobs:
           result-encoding: string
           script: |
             const envJson = JSON.parse(process.env.SANDBOX_SECRETS);
-            const sandboxes = Object.keys(envJson).map((str) => (`\"${str}\"`));
-            console.log(sandboxes);
-            return sandboxes;
+            return JSON.stringify(Object.keys);
 
       - name: ⚙️ setup sandboxes
         id: setup-sandboxes
