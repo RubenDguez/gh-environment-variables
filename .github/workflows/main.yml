@@ -21,8 +21,7 @@ jobs:
           script: |
             // JAVASCRIPT CODE
             const { SANDBOX_SECRETS } = process.env
-            const envJson = JSON.parse(SANDBOX_SECRETS);
-            return Object.keys(envJson)
+            return Object.keys(JSON.parse(SANDBOX_SECRETS))
 
       - name: ⚙️ setup sandboxes
         id: setup-sandboxes
