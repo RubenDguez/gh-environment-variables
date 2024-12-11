@@ -28,7 +28,7 @@ jobs:
       - name: ⚙️ setup sandboxes
         id: setup-sandboxes
         run: |
-          echo "SANDBOXES=${{ steps.extract-sandboxes.outputs.result }}" >> $GITHUB_OUTPUT
+          echo "SANDBOXES=[${{ steps.extract-sandboxes.outputs.result }}]" >> $GITHUB_OUTPUT
 
   matrix:
     needs: setup-matrix
