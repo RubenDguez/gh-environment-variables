@@ -36,7 +36,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        sandbox: ${{ needs.setup-matrix.outputs.SANDBOXES }}
+        sandbox: ${{ fromJson(needs.setup-matrix.outputs.SANDBOXES) }}
 
     steps:
       - name: 🚀 Set Password
