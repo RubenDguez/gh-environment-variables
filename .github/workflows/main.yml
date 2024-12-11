@@ -40,14 +40,15 @@ jobs:
       - name: 🚀 Set Password
         env:
           SANDBOX: ${{ matrix.sandbox }}
+
         uses: actions/github-script@v7
         id: set-password
         with:
           result-encoding: string
           script: |
             const envJson = JSON.parse(process.env.SANDBOX_SECRETS);
-            const sandbox = process.env.SANDBOX
-            return envJson[sandbox]
+            const { SANDBOX } = process.env
+            return envJson[SANDBOX]
       
       - name: 🖨️ Print Password
         run: echo "${{steps.set-password.outputs.result}}"
