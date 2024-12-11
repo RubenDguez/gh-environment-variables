@@ -25,7 +25,7 @@ env:
 
 jobs:
   setup-matrix:
-    if: ${{ github.event_name == 'push' || github.event == 'schedule' }}
+    if: ${{ github.event_name == 'push' || github.event_name == 'schedule' }}
     runs-on: ubuntu-latest
     outputs:
       SANDBOXES: ${{ steps.setup-sandboxes.outputs.SANDBOXES }}
@@ -45,7 +45,7 @@ jobs:
           echo 'SANDBOXES=${{ steps.extract-sandboxes.outputs.result }}' >> $GITHUB_OUTPUT
 
   matrix:
-    if: ${{ github.event_name == 'push' || github.event == 'schedule' }}
+    if: ${{ github.event_name == 'push' || github.event_name == 'schedule' }}
     needs: setup-matrix
     runs-on: ubuntu-latest
     strategy:
