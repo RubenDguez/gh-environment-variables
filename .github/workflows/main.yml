@@ -12,7 +12,7 @@ jobs:
   setup-matrix:
     runs-on: ubuntu-latest
     outputs:
-      pr-number: ${{ steps.setup-sandboxes.outputs.SANDBOXES }}
+      SANDBOXES: ${{ steps.setup-sandboxes.outputs.SANDBOXES }}
     steps:
       - name: 🛸 Extract sandboxes
         id: extract-sandboxes
@@ -36,7 +36,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        sandbox: ${{ fromJson( needs.setup-sandboxes.outputs.SANDBOXES ) }}
+        sandbox: ${{ needs.setup-matrix.outputs.SANDBOXES }}
 
     steps:
       - name: 🚀 Set Password
