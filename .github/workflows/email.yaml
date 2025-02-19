@@ -49,4 +49,4 @@ jobs:
                 EMAIL_LIST: ${{ (inputs.DELIVERABLE == 'BU' && inputs.REGRESSION_TYPE == 'crm') && env.EMAIL_CRM || (inputs.DELIVERABLE == 'BU' && inputs.REGRESSION_TYPE == 'land') && env.EMAIL_LAND || (inputs.DELIVERABLE == 'BU' && inputs.REGRESSION_TYPE == 'tipp') && env.EMAIL_TIPP }}
             
               run: |
-                echo ${{ env.EMAIL_LIST }}${{ (env.EMAIL_LIST != '') && ',' }}${{ env.EMAIL_DEV }}
+                echo ${{ env.EMAIL_LIST }}${{ (env.EMAIL_LIST == '') && '' || ',' }}${{ env.EMAIL_DEV }}
