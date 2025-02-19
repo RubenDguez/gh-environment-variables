@@ -49,4 +49,4 @@ jobs:
                 EMAIL_LIST: ${{ (inputs.DELIVERABLE == 'BU' && inputs.REGRESSION_TYPE == 'crm') && env.EMAIL_CRM || (inputs.DELIVERABLE == 'BU' && inputs.REGRESSION_TYPE == 'land') && env.EMAIL_LAND || (inputs.DELIVERABLE == 'BU' && inputs.REGRESSION_TYPE == 'tipp') && env.EMAIL_TIPP || (inputs.DELIVERABLE == 'DEV') && env.EMAIL_DEV }}
             
               run: |
-                echo $(EMAIL_LIST)
+                echo ${{ env.EMAIL_LIST }}
