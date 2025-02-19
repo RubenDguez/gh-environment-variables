@@ -1,0 +1,52 @@
+name: EMAIL DECISION
+
+on:
+    workflow_dispatch:
+        inputs:
+            REGRESSION_TYPE:
+                required: true
+                type: choice
+                description: what regression do you want to run?
+                options:
+                    - crm
+                    - land
+                    - tipp
+                    - full-regression
+            
+            REGRESSION_ENVIRONMENT:
+                required: true
+                type: choice
+                description: Which Salesforce environment do you want to run the regression against?
+                options:
+                    - test
+                    - sit
+                    - qa
+                    - uat
+                    - train
+                    
+            DELIVERABLE:
+                required: true
+                type: choice
+                description: Which deliverable do you want to run the regression for?
+                options:
+                    - BU
+                    - DEV
+                default: BU
+
+env:
+    EMAIL_CRM: "CRM TEAM"
+    EMAIL_LAND: "LAND TEAM"
+    EMAIL_TIPP: "TIPP TEAM"
+    EMAIL_DEV: "DEVELOPMENT TEAM"
+
+jobs:
+    print-correct-email-list:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Print Email List
+              env:
+                EMAIL_LIST: ${{ (inputs.DELIVERABLE == 'BU' && inputs.REGRESSION_TYPE == 'crm') && env.EMAIL_CRM || (inputs.DELIVERABLE == 'BU' && inputs.REGRESSION_TYPE == 'land') && env.EMAIL_LAND || (inputs.DELIVERABLE == 'BU' && inputs.REGRESSION_TYPE == 'tipp') && env.EMAIL_TIPP || (inputs.DELIVERABLE == 'DEV') && env.EMAIL_DEV }}
+            
+              run: |
+                echo $(EMAIL_LIST)
