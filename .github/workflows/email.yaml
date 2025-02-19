@@ -36,7 +36,7 @@ on:
 env:
     EMAIL_CRM: "kyle.nazzaro@nexteraenerty.com,earl.smith@nexteraenergy.com"
     EMAIL_LAND: "augusta.howells@nexteraenergy.com,lakshmi.thalla@nexteraenergy.com,harikrishna.chennur@nexteraenergy.com"
-    EMAIL_TIPP: "argenis.dominguez@nexteraenergy.com,ravi.bezawada@nexteraenergy.com,israel.felhandler@nexteraenergy.com"
+    EMAIL_TIPP: ""
     EMAIL_DEV: "argenis.dominguez@nexteraenergy.com,ravi.bezawada@nexteraenergy.com,israel.felhandler@nexteraenergy.com"
 
 jobs:
