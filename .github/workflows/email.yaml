@@ -34,10 +34,10 @@ on:
                 default: BU
 
 env:
-    EMAIL_CRM: "CRM TEAM"
-    EMAIL_LAND: "LAND TEAM"
-    EMAIL_TIPP: "TIPP TEAM"
-    EMAIL_DEV: "DEVELOPMENT TEAM"
+    EMAIL_CRM: "argenis.dominguez@nexteraenergy.com,ravi.bezawada@nexteraenergy.com,kyle.nazzaro@nexteraenerty.com,earl.smith@nexteraenergy.com,israel.felhandler@nexteraenergy.com"
+    EMAIL_LAND: "argenis.dominguez@nexteraenergy.com,augusta.howells@nexteraenergy.com,lakshmi.thalla@nexteraenergy.com,harikrishna.chennur@nexteraenergy.com,israel.felhandler@nexteraenergy.com"
+    EMAIL_TIPP: "argenis.dominguez@nexteraenergy.com,ravi.bezawada@nexteraenergy.com,israel.felhandler@nexteraenergy.com"
+    EMAIL_DEV: "argenis.dominguez@nexteraenergy.com,ravi.bezawada@nexteraenergy.com,israel.felhandler@nexteraenergy.com"
 
 jobs:
     print-correct-email-list:
